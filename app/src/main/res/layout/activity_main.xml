@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:textSize="18dp"
-        android:text="walid tlili"
+
         app:layout_constraintTop_toBottomOf="@+id/textView1"
         app:layout_constraintStart_toStartOf="parent"
       />

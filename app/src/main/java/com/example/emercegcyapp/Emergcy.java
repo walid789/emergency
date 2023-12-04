@@ -19,13 +19,9 @@ private float  Latitude,Longitude;
 
     @Override
     public String toString() {
-        return "Emergcy{" +
-                "id=" + id +
-                ", id_user=" + id_user +
+        return "Emergcy =" +
+                ", cas ='" + cas + '\'' +
                 ", date='" + date + '\'' +
-                ", Latitude=" + Latitude +
-                ", Longitude=" + Longitude +
-                ", cas='" + cas + '\'' +
                 '}';
     }
 

@@ -46,7 +46,7 @@ public class ListCard extends AppCompatActivity  implements  LocationListener{
     private ImageView b1;
     private Handler handler;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_card);
         getSupportActionBar().hide();
@@ -84,6 +84,7 @@ public class ListCard extends AppCompatActivity  implements  LocationListener{
         });
     }
     private void startLocationUpdates(String cas) {
+
         lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -135,13 +136,23 @@ public class ListCard extends AppCompatActivity  implements  LocationListener{
                 // Check if there is an app to handle the Intent before starting it
                 if (mapIntent.resolveActivity(getPackageManager()) != null) {
                     startActivity(mapIntent);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Start MainActivity after 20 seconds delay
+                            Intent intent = new Intent(ListCard.this, MainActivity.class);
+                            startActivity(intent);
+                            // Finish this activity to prevent going back here when pressing the back button
+                            finish();
+                        }
+                    }, 10000);
+
                 }
             }
         }
     }
     private LatLng findNearestHospital(LatLng currentLocation) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-
         try {
             List<Address> addresses = geocoder.getFromLocation(currentLocation.latitude, currentLocation.longitude, 1);
 
@@ -202,11 +213,5 @@ public class ListCard extends AppCompatActivity  implements  LocationListener{
         }
         handler.removeCallbacksAndMessages(null);
     }
-    /*public void sendToMain(String cas ){
-        Intent intent = new Intent(ListCard.this, MainActivity.class);
-        int id_user= getIntent().getIntExtra("id_user",0);
-        intent.putExtra("cas",cas);
-        intent.putExtra("id_user",id_user);
-        startActivity(intent);
-    }*/
+
 }

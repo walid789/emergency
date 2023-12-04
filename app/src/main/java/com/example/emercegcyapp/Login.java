@@ -64,20 +64,21 @@ public class Login extends AppCompatActivity {
         Log.d(TAG, "Authetification: " +test);
         if(test>0){
 
-            Toast.makeText(Login.this, "Auth success for user", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "Auth success for "+user_name, Toast.LENGTH_SHORT).show();
 
            Intent intent=new Intent(this,MainActivity.class);
            intent.putExtra("id_user",test);
+           intent.putExtra("user_name",user_name);
             startActivity(intent);
         }
         if(test==-1){
-            Toast.makeText(Login.this, "Auth success for admin", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(this,AdminPanel.class);
             startActivity(intent);
         }
-        else {
+        if(test==0){
             Toast.makeText(Login.this, "password or username invalid", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public void sendToSignUp(){

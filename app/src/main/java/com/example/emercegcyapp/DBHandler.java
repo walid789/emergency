@@ -127,6 +127,16 @@ public class DBHandler  extends SQLiteOpenHelper {
         db.close();
         return courseModalArrayList;
     }
+    public void deleteEmergcy(int id){
+        SQLiteDatabase db = this.getWritableDatabase(); // Open or create the database
+
+        String tableName = "emergcy";
+        String whereClause = "id = ?";
+        String[] whereArgs = new String[] {String.valueOf(id)};
+        int rowsDeletedEmergcy= db.delete(tableName, whereClause, whereArgs);
+        db.close(); // Close the database
+
+    }
 
 
     @Override
